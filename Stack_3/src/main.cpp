@@ -1,0 +1,54 @@
+// main.cpp
+// 2019-07-14
+// kdj6724@naver.com
+#include "StackType.h"
+#include <iostream>
+bool IsOpen(char symbol) {
+	if ((symbol == '(') || (symbol == '{') || (symbol == '['))
+		return true;
+	else
+		return false;
+}
+
+bool IsClosed(char symbol) {
+	if ((symbol == ')') || (symbol == '}') || (symbol == ']'))
+		return true;
+	else
+		return false;
+}
+
+bool Matches(char symbol, char openSymbol) {
+	return (((openSymbol == '(') && (symbol == ')'))
+			|| ((openSymbol == '{') && (symbol == '}'))
+			|| ((openSymbol == '[') && (symbol == ']')));
+}
+
+int main(void) {
+	using namespace std;
+	char symbol;
+	StackType<char> stack(100);
+	bool balanced = true;
+	char openSymbol;
+
+	cout << "Enter an expression and press return." << endl;
+	cin.get(symbol);
+	while (symbol != '\n' && balanced) {
+		if (IsOpen(symbol)) {
+			stack.Push(symbol);
+		} else if (IsClosed(symbol)) {
+			if (stack.IsEmpty()) {
+				balanced = false;
+			} else {
+				openSymbol = stack.Top();
+				stack.Pop();
+				balanced = Matches(symbol, openSymbol);
+			}
+		}
+		cin.get(symbol);
+	}
+	if (balanced)
+		cout << "Expression is well formed." << endl;
+	else
+		cout << "Expression is not well formed" << endl;
+	return 0;
+}
