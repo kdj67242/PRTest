@@ -24,3 +24,12 @@ Queue
 CountedQueue
 4장 예제 
 Queue를 상속받아 개수를 셀수 있게 만든거
+
+LinkedStructures/Stack_1
+5장 예제
+Linked list를 이용한 Stack구현
+
+LinkedStructures/Queue
+5장 예제
+Linked list를 이용한 Queue구현
+
